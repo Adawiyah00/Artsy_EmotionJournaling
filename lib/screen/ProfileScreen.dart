@@ -47,24 +47,31 @@ class ProfileScreenState extends State<ProfileScreen> {
     return BodyWidget(
       Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: appBarWidget("Settings", textColor: Colors.white, showBack: false, color: transparentColor, elevation: 0),
+        appBar: appBarWidget("Settings",
+            textColor: Colors.white,
+            showBack: false,
+            color: transparentColor,
+            elevation: 0),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: AnimationConfiguration.toStaggeredList(
               duration: Duration(milliseconds: 600),
-              childAnimationBuilder: (widget) => SlideAnimation(verticalOffset: 20, child: FadeInAnimation(child: widget)),
+              childAnimationBuilder: (widget) => SlideAnimation(
+                  verticalOffset: 20, child: FadeInAnimation(child: widget)),
               children: [
                 SettingItemWidget(
                   title: "Nickname",
                   onTap: () {
                     nameController.text = getStringAsync(NICK_NAME);
                     EmojiAlert(
-                      alertTitle: Text("Edit Nick Name", style: boldTextStyle()).paddingTop(20),
+                      alertTitle: Text("Edit Nick Name", style: boldTextStyle())
+                          .paddingTop(20),
                       description: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Yeah, want to edit nick name?", style: secondaryTextStyle()),
+                          Text("Yeah, want to edit nick name?",
+                              style: secondaryTextStyle()),
                           16.height,
                           TextField(
                             controller: nameController,
@@ -75,8 +82,12 @@ class ProfileScreenState extends State<ProfileScreen> {
                             elevation: 0,
                             color: primaryColor,
                             width: context.width(),
-                            shapeBorder: RoundedRectangleBorder(borderRadius: radius(8), side: BorderSide(color: primaryColor)),
-                            child: Text('Done', style: boldTextStyle(color: Colors.white)).fit(),
+                            shapeBorder: RoundedRectangleBorder(
+                                borderRadius: radius(8),
+                                side: BorderSide(color: primaryColor)),
+                            child: Text('Done',
+                                    style: boldTextStyle(color: Colors.white))
+                                .fit(),
                             onTap: () {
                               appStore.setNikName(nameController.text);
                               log(nameController.text);
@@ -104,7 +115,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                 SettingItemWidget(
                   title: "Mood Tag Library",
                   onTap: () {
-                    MoodTagLibraryScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+                    MoodTagLibraryScreen().launch(context,
+                        pageRouteAnimation: PageRouteAnimation.Slide);
                   },
                   leading: Icon(MaterialIcons.tag_faces, size: 22),
                   trailing: Icon(Icons.keyboard_arrow_right, size: 22),
@@ -112,23 +124,17 @@ class ProfileScreenState extends State<ProfileScreen> {
                 SettingItemWidget(
                   title: "Activity Library",
                   onTap: () {
-                    MoodActivityLibraryScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+                    MoodActivityLibraryScreen().launch(context,
+                        pageRouteAnimation: PageRouteAnimation.Slide);
                   },
                   leading: Icon(Icons.sentiment_satisfied_alt, size: 22),
                   trailing: Icon(Icons.keyboard_arrow_right, size: 22),
                 ),
                 SettingItemWidget(
-                  title: "Game Zone",
-                  onTap: () {
-                    GameZoneScreen().launch(context);
-                  },
-                  leading: Icon(Ionicons.ios_game_controller_outline, size: 22),
-                  trailing: Icon(Icons.keyboard_arrow_right, size: 22),
-                ),
-                SettingItemWidget(
                   title: "About",
                   onTap: () async {
-                    AboutUsScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+                    AboutUsScreen().launch(context,
+                        pageRouteAnimation: PageRouteAnimation.Slide);
                   },
                   leading: Icon(Ionicons.information_circle_outline, size: 22),
                   trailing: Icon(Icons.keyboard_arrow_right, size: 22),
